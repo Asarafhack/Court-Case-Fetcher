@@ -1,22 +1,12 @@
-import puppeteer from "puppeteer";
-
 export const scrapeCase = async (
   caseType: string,
   caseNumber: string,
   year: string
 ) => {
   try {
-    const browser = await puppeteer.launch({
-      headless: true,
-    });
+    // 🚫 Puppeteer removed (not supported in Vercel serverless)
 
-    const page = await browser.newPage();
-
-    await page.goto("https://example.com", {
-      waitUntil: "domcontentloaded",
-    });
-
-    // Simulated realistic data (for now)
+    // ✅ Simulated realistic response
     const data = {
       caseType,
       caseNumber,
@@ -25,12 +15,11 @@ export const scrapeCase = async (
       parties: "Petitioner vs Respondent",
       status: "Pending",
       hearingDate: "2026-04-01",
-      source: "Mock Data (Scraper Phase)",
+      source: "Demo Data (Production Safe)",
     };
 
-    await browser.close();
-
     return data;
+
   } catch (error) {
     console.error("SCRAPER ERROR:", error);
     throw new Error("Scraping failed");
